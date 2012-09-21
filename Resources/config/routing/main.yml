@@ -1,0 +1,4 @@
+#popin
+popin:
+    pattern:  /popin/signin/addtoplaylist
+    defaults: { _controller: SkreenHouseFactoryPopinBundle:Signin:addtoplaylist }

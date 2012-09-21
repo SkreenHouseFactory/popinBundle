@@ -1,0 +1,4 @@
+service:
+    name: mySkreen
+    description: 'Streaming, Replay et vidéo à la demande, Cinéma'
+    url: 'http://www.myskreen.com'
