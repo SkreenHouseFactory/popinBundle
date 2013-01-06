@@ -1,0 +1,118 @@
+{% extends 'SkreenHouseFactoryPopinBundle::layout.html.twig' %}
+
+{% block title %}{{ 'popin.title.auth'|trans }}{% endblock %}
+
+{% block content %}
+<div align="center">
+<img id="fb-connect" src="{{ asset('bundles/skreenhousefactorypopin/images/facebook-connect.jpg') }}" alt="{{ 'connect.withfb'|trans }}" />
+<div id="fb-connect-infos"></div>
+</div>
+<br/>
+<br/>
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#signin" data-toggle="tab">{{ 'popin.signin'|trans }}</a></li>
+  <li><a href="#signup" data-toggle="tab">{{ 'popin.signup'|trans }}</a></li>
+</ul>
+
+<div class="tab-content">
+
+<p id="form-errors" class="alert alert-error hide"></p>
+
+<form id="signin" action="user" class="tab-pane active form-horizontal">
+  <div class="control-group">
+    <label class="control-label" for="inputEmail">{{ 'popin.form.label.email'|trans }}</label>
+    <div class="controls">
+      <input type="text" name="username" id="inputEmail" placeholder="{{ 'popin.form.label.email'|trans }}">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="inputPassword">{{ 'popin.form.label.password'|trans }}</label>
+    <div class="controls">
+      <input type="password" name="password" id="inputPassword" placeholder="{{ 'popin.form.label.password'|trans }}">
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+      <button type="submit" class="btn btn-large">{{ 'popin.form.submit.validate'|trans }}</button>
+    </div>
+  </div>
+</form>
+
+<form id="signup" action="user" class="tab-pane form-horizontal">
+  <div class="control-group">
+    <label class="control-label" for="inputEmail">{{ 'popin.form.label.email'|trans }}</label>
+    <div class="controls">
+      <input type="text" name="username" id="inputEmail" placeholder="{{ 'popin.form.label.email'|trans }}">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="inputPassword">{{ 'popin.form.label.password'|trans }}</label>
+    <div class="controls">
+      <input type="password" name="password" id="inputPassword" placeholder="{{ 'popin.form.label.password'|trans }}">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="inputPasswordConfirm">{{ 'popin.form.label.passwordconfirm'|trans }}</label>
+    <div class="controls">
+      <input type="password" name="password_confirm" id="inputPasswordConfirm" placeholder="{{ 'popin.form.label.passwordconfirm'|trans }} {{ 'popin.form.label.password'|trans }}">
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+      <button type="submit" class="btn btn-large">{{ 'popin.form.submit.validate'|trans }}</button>
+    </div>
+  </div>
+</form>
+</div>
+
+<script>
+/* Form ajax */
+API.catchFormModal();
+
+/* Fb connect */
+function fbsync() {
+  console.log('Welcome!  Fetching your information.... ');
+  FB.api('/me', function(response) {
+    console.log('Good to see you, ' + response.name + '.', response);
+    API.query('POST', 'user', {
+                session_uid: Skhf.session.uid,
+                fbuid: response.id,
+                username: response.email,
+              },
+              function(){
+                Skhf.session.sync(function(){
+                  $('#skModal').modal('hide');
+                });
+              });
+  });
+}
+function fblogin() {
+  FB.login(function(response) {
+    if (response.authResponse) {
+      // connected
+      $('#fb-connect-infos').html('<span class="alert alert-success">Connexion à Facebook réussie ! Chargement ...</span>');
+      fbsync();
+    } else {
+      // cancelled
+      $('#fb-connect-infos').html('<span class="alert alert-error">La connexion à Facebook a échoué !</span>');
+    }
+  },{scope:'user_birthday,user_online_presence,email,read_friendlists,publish_stream,offline_access,friends_birthday,friends_likes,friends_online_presence,publish_actions'});
+}
+FB.getLoginStatus(function(response) {
+  if (response.status === 'connected') {
+    FB.api('/me', function(response) {
+      console.log('Good to see you, ' + response.name + '.', response);
+      $('#fb-connect-infos').html('<small>(' + response.name + ')</small>');
+    });
+  }
+});
+
+//btn
+$('#fb-connect').click(function(){
+  fblogin();
+})
+
+</script>
+{% endblock %}
+
+{% block footer %}...{% endblock %}

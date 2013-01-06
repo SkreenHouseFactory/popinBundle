@@ -1,4 +1,12 @@
-service:
-    name: mySkreen
-    description: 'Streaming, Replay et vidéo à la demande, Cinéma'
-    url: 'http://www.myskreen.com'
+popin:
+    title:
+        auth: Ma Télé
+    form:
+        label:
+            email: Email
+            password: Mot de passe
+            passwordconfirm: Confirmation
+        submit:
+            validate: Envoyer
+    signin: Se connecter à Ma Télé
+    signup: Créer Ma Télé
