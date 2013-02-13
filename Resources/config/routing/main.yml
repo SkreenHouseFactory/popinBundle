@@ -1,4 +1,4 @@
 #popin
 popin_auth:
-    pattern:  /popin/auth
+    pattern:  /auth
     defaults: { _controller: SkreenHouseFactoryPopinBundle:Auth:default }
