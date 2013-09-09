@@ -2,95 +2,109 @@
    Author: Benoît Bergstörm
    ========================================================================== */
 
-.modal .modal-body .progress {
-  margin: 30px 80px;
-}
-.modal #part-header {
-  display: none !important;
-}
-.modal #part-body {
-  background: white;
-  text-align: center;
-  padding: 10px 0;
-}
-.modal h1 a {
- text-decoration: none;
- color: #555;
-}
-.modal h1 a:hover {
- text-decoration: underline;
- color: #555;
-}
-.modal #skSignin {
-  text-align:left;
-}
-.modal #fbconnect {
-  margin: 20px 0 40px;
-  text-align: center;
-}
-.modal .paymentPopin {
-  form {
-    margin-bottom: 0px;
+.modal {
 
-    ul {
-      margin: 0;
-      padding: 0;
+  .modal-body {
+   .progress {
+      margin: 30px 80px;
+    }
+    #part-header {
+      display: none !important;
+    }
+    #part-body {
+      background: white;
+      text-align: center;
+      padding: 10px 0;
+    }
 
-      li {
-        list-style: none;
+    h1 a {
+     text-decoration: none;
+     color: #555;
+     &:hover {
+       text-decoration: underline;
+       color: #555;
       }
     }
-    table {
-      th {
-        width: 195px;
-        padding-right: 10px;
-        text-align: right;
-      }
-      tr.actions .btn {
-        margin-top: 10px;
-      }
+
+    #skSignin {
+      text-align:left;
     }
-    input[type="radio"], input[type="checkbox"] {
-      float: left;
-      margin-right: 10px;
+    #fbconnect {
+      margin: 20px 0 40px;
+      text-align: center;
     }
-    select.cc_expiry_date {
-      width: 75px;
+
+    .alert {
+      padding: 7px;
     }
-    label {
-      font-size: 11px;
-      color: #999;
-      text-transform: uppercase;
-      font-weight: bold;
-      text-rendering: optimizelegibility;
-    }
-    label[for="inscrit"], label[for="inscrit_1"] {
-      font-size: 1.0em;
-      color: black;
-      text-transform: none;
+    .paymentPopin {
+      form {
+        margin-bottom: 0px;
+
+        ul {
+          margin: 0;
+          padding: 0;
+          &.alert{
+          padding: 7px;
+          }
+          li {
+            list-style: none;
+          }
+        }
+
+        table {
+          th {
+            width: 195px;
+            padding-right: 10px;
+            text-align: right;
+          }
+          tr.actions .btn {
+            margin-top: 10px;
+          }
+        }
+        input[type="radio"], input[type="checkbox"] {
+          float: left;
+          margin-right: 10px;
+        }
+        select.cc_expiry_date {
+          width: 75px;
+        }
+        label {
+          font-size: 11px;
+          color: #999;
+          text-transform: uppercase;
+          font-weight: bold;
+          text-rendering: optimizelegibility;
+        }
+        label[for="inscrit"], label[for="inscrit_1"] {
+          font-size: 1.0em;
+          color: black;
+          text-transform: none;
     
+        }
+      }
+
+    	.loc {
+    		span {
+    			display: block;
+    			font-weight: bold;
+    		}
+    		label {
+    			display: inline-block;
+    		}
+    	}
+
+      .skVignette {
+        float: left;
+        margin-right: 20px;
+      }
     }
   }
+  .modal-footer {
+    padding-right: 130px;
 
-	.loc {
-		span {
-			display: block;
-			font-weight: bold;
-		}
-		label {
-			display: inline-block;
-		}
-	}
-
-  .skVignette {
-    float: left;
-    margin-right: 20px;
-  }
-}
-.modal-footer {
-  padding-right: 130px;
-
-  .close {
-    display: none;
+    .close {
+      display: none;
+    }
   }
 }
